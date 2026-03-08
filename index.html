@@ -1015,9 +1015,11 @@ function renderTimeline() {
       if (ap1) { if (ap1.toLowerCase() === 'pm' && h1 !== 12) h1 += 12; if (ap1.toLowerCase() === 'am' && h1 === 12) h1 = 0; }
       if (ap2) { if (ap2.toLowerCase() === 'pm' && h2 !== 12) h2 += 12; if (ap2.toLowerCase() === 'am' && h2 === 12) h2 = 0; }
       const startMin = h1 * 60 + m1;
-      const endMin   = h2 * 60 + m2;
-      for (let i = startMin; i < endMin && i < 1440; i++) {
-        covered[i] = slot.type || 'family';
+      let endMin     = h2 * 60 + m2;
+      // Handle overnight slots (e.g. 9pm–7am crosses midnight)
+      if (endMin <= startMin) endMin += 1440;
+      for (let i = startMin; i < endMin; i++) {
+        covered[i % 1440] = slot.type || 'family';
       }
     });
 
