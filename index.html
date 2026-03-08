@@ -598,8 +598,10 @@
   <div class="care-guide">
     <div class="care-guide-header">
       <h2>💙 Harry's Daily Care Guide</h2>
-      <p>Harry has always been fiercely independent. He's 99 and is no longer to do the things he used to
-         — he may say he doesn't need help, but he does need help throughout the day for daily living. Here's brief summary of what he needs during visits.</p>
+      <p> Harry has always been fiercely independent. He's now 99 and isn’t able to manage daily care on his own anymore — even if he says he doesn’t need help. </br><br><strong>** Without regular help throughout the day, his hygiene and skin care can suffer, and he can develop painful sores that can easily become infected.</strong></p>
+<br><br><p>
+Below is a brief summary of what he needs during visits so we can make sure he’s properly cared for.
+      </p>
     </div>
 
     <div class="care-blocks">
@@ -673,7 +675,10 @@
     </div>
 
     <div class="care-note">
-      <strong>📋 A note:</strong> Margarita and Alex will be coordinating everything while Mom is away. <strong>Missy helps on Tuesdays and Thursdays</strong>, she is paid $15/hour. If you're able to contribute toward her additional hours during this period, please let me know. Every visit — even just an hour of company is a huge help. Thank you. 💙
+      <strong>Missy helps on Tuesdays and Thursdays</strong>, she is paid $15/hour. If you're able to contribute toward her additional hours during this period, please let me know. Every visit — even just an hour of company is a huge help. Thank you. 💙
+      <br></br>
+      <strong>Margarita:</strong> 310-871-1729<br>
+      <strong>Alex:</strong> 850-377-3629
     </div>
   </div>
 
@@ -760,7 +765,7 @@ async function loadData() {
     scheduleData = await r.json();
     if (!scheduleData.slots) scheduleData.slots = {};
     renderCalendar();
-    document.getElementById('statusMsg').textContent = `Schedule loaded · shared with all siblings · auto-refreshes every minute`;
+    document.getElementById('statusMsg').textContent = `Schedule loaded`;
   } catch(e) {
     document.getElementById('statusMsg').textContent = '⚠️ Could not load schedule — check Worker is deployed.';
     renderCalendar();
