@@ -61,7 +61,7 @@
     color: var(--text-soft);
     font-size: 1rem;
     font-weight: 300;
-    max-width: 500px;
+    max-width: 700px;
     margin: 0 auto;
   }
   .date-range {
@@ -186,35 +186,55 @@
     transition: all 0.18s;
     line-height: 1.3;
   }
-  .slot:hover:not(.taken):not(.my-slot) { border-color: var(--amber); background: #fef3e2; color: var(--brown); }
+  .slot:hover:not(.taken):not(.my-slot) { border-color: var(--amber); background: #e8f0f8; color: var(--brown); }
   .slot.my-slot { background: #d4edda; border-color: var(--green); color: var(--green); font-weight: 500; cursor: pointer; }
   .slot.my-slot:hover { background: #c3e6cb; }
-  .slot.taken { background: #fdecea; border-color: #e0a0a0; color: #a05050; cursor: default; }
+  .slot.taken { background: #e8eef5; border-color: #a0b8d0; color: #3a5a70; cursor: default; }
   .slot.sitter { background: #fff3cd; border-color: #d4a017; color: #7a5a00; cursor: pointer; }
   .slot.sitter:hover:not(.taken) { background: #ffeaa0; }
 
   .slot-label { font-size: 0.72rem; opacity: 0.75; display: block; margin-bottom: 1px; }
   .slot-name { font-size: 0.8rem; font-weight: 600; }
 
+  /* ── Add Time button: dark navy, prominent, at top ── */
   .add-slot-btn {
     width: 100%;
-    border: 1.5px dashed var(--border);
+    border: none;
     border-radius: 7px;
-    padding: 0.38rem;
-    background: transparent;
-    color: var(--text-soft);
+    padding: 0.45rem 0.5rem;
+    background: #1a3a52;
+    color: #fff;
     font-size: 0.78rem;
+    font-weight: 600;
     cursor: pointer;
     text-align: center;
-    transition: all 0.18s;
+    transition: background 0.18s;
+    letter-spacing: 0.01em;
+    margin-bottom: 0.25rem;
   }
-  .add-slot-btn:hover { border-color: var(--amber); color: var(--amber); background: #fef9f2; }
+  .add-slot-btn:hover { background: #2a6496; }
+
+  /* ── Gap indicator between slots ── */
+  .slot-gap {
+    width: 100%;
+    border-radius: 7px;
+    padding: 0.32rem 0.5rem;
+    font-size: 0.7rem;
+    border: 1.5px dashed #c8d8e8;
+    background: transparent;
+    color: #a0b8c8;
+    text-align: center;
+    font-style: italic;
+    line-height: 1.3;
+    cursor: default;
+    user-select: none;
+  }
 
   .modal-overlay {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(45, 31, 14, 0.45);
+    background: rgba(26,46,61,0.5);
     z-index: 100;
     align-items: center;
     justify-content: center;
@@ -227,7 +247,7 @@
     border-radius: 16px;
     padding: 2rem;
     width: min(420px, 92vw);
-    box-shadow: 0 20px 60px rgba(92,61,30,0.25);
+    box-shadow: 0 20px 60px rgba(26,46,61,0.25);
     animation: pop 0.2s ease;
   }
   @keyframes pop {
@@ -249,8 +269,8 @@
     background: var(--cream);
     font-size: 0.9rem;
   }
-  .modal-opt:hover { border-color: var(--amber); background: #fef3e2; }
-  .modal-opt.selected { border-color: var(--amber); background: #fef3e2; font-weight: 500; }
+  .modal-opt:hover { border-color: var(--amber); background: #e8f0f8; }
+  .modal-opt.selected { border-color: var(--amber); background: #e8f0f8; font-weight: 500; }
   .modal-opt .opt-icon { font-size: 1.2rem; }
   .modal-actions { display: flex; gap: 0.65rem; justify-content: flex-end; }
   .btn-cancel {
@@ -307,6 +327,40 @@
   }
   .time-row input:focus { border-color: var(--amber); }
   .time-row span { color: var(--text-soft); font-size: 0.85rem; }
+
+  .slot-note {
+    font-size: 0.72rem;
+    color: var(--text-soft);
+    margin-top: 3px;
+    font-style: italic;
+    line-height: 1.3;
+    white-space: normal;
+    word-break: break-word;
+  }
+  .note-input {
+    width: 100%;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 0.5rem 0.75rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    background: var(--cream);
+    color: var(--text);
+    outline: none;
+    resize: none;
+    transition: border-color 0.2s;
+    margin-bottom: 0.75rem;
+    min-height: 64px;
+  }
+  .note-input:focus { border-color: var(--amber); }
+  .note-input::placeholder { color: #9ab0c0; }
+  .note-label {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--brown);
+    margin-bottom: 0.3rem;
+    display: block;
+  }
 
   .status-bar {
     background: var(--card);
@@ -431,7 +485,6 @@
   }
   .care-note strong { color: var(--brown); font-weight: 600; }
 
-
   /* Coverage Timeline */
   .timeline-section {
     margin-top: 2.5rem;
@@ -515,41 +568,6 @@
     border-radius: 7px;
     display: none;
   }
-
-
-  .slot-note {
-    font-size: 0.72rem;
-    color: var(--text-soft);
-    margin-top: 3px;
-    font-style: italic;
-    line-height: 1.3;
-    white-space: normal;
-    word-break: break-word;
-  }
-  .note-input {
-    width: 100%;
-    border: 1.5px solid var(--border);
-    border-radius: 8px;
-    padding: 0.5rem 0.75rem;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.88rem;
-    background: var(--cream);
-    color: var(--text);
-    outline: none;
-    resize: none;
-    transition: border-color 0.2s;
-    margin-bottom: 0.75rem;
-    min-height: 64px;
-  }
-  .note-input:focus { border-color: var(--amber); }
-  .note-input::placeholder { color: #9ab0c0; }
-  .note-label {
-    font-size: 0.82rem;
-    font-weight: 500;
-    color: var(--brown);
-    margin-bottom: 0.3rem;
-    display: block;
-  }
 </style>
 </head>
 <body>
@@ -559,7 +577,7 @@
     <div class="icon">🏠</div>
     <h1>Dad's Care Schedule</h1>
     <p>Pick a day and time that works for you — every slot helps.</p>
-    <p>If your unable to contribute for sitters, please contribute with your time. Every visit — even just an hour of company is a huge help. Thank you. 💙</p>
+    <p>If your unable to contribute for additional sitter hours, please contribute with your time. Every visit — even just an hour of company is a huge help. Thank you. 💙</p>
     <span class="date-range" id="dateRange">Loading dates...</span>
   </header>
 
@@ -579,8 +597,6 @@
 
   <div id="calendarRoot"><div class="loading-msg">⏳ Loading schedule...</div></div>
 
-
-
   <!-- Coverage Timeline -->
   <div class="timeline-section">
     <h2>📊 Daily Coverage</h2>
@@ -599,10 +615,9 @@
   <div class="care-guide">
     <div class="care-guide-header">
       <h2>💙 Harry's Daily Care Guide</h2>
-      <p> Harry has always been fiercely independent. He's now 99 and isn’t able to manage daily care on his own anymore — even if he says he doesn’t need help. </br><br><strong>** Without regular help throughout the day, his hygiene and skin care can suffer, and he can develop painful sores that can easily become infected.</strong></p>
-<br><br><p>
-Below is a brief summary of what he needs during visits so we can make sure he’s properly cared for.
-      </p>
+      <p>Harry has always been fiercely independent. He's now 99 and isn't able to manage daily care on his own anymore — even if he says he doesn't need help.</p>
+      <br><p><strong>** Without regular help throughout the day, his hygiene and skin care can suffer, and he can develop painful sores that can easily become infected.</strong></p>
+      <br><p>Below is a brief summary of what he needs during visits so we can make sure he's properly cared for.</p>
     </div>
 
     <div class="care-blocks">
@@ -618,7 +633,7 @@ Below is a brief summary of what he needs during visits so we can make sure he�
         <ul>
           <li><strong>Give medication</strong> with breakfast</li>
           <li><strong>Make breakfast</strong> and sit with him</li>
-          <li>Check bed pad & sheets — <strong>change if soiled</strong></li>
+          <li>Check bed pad &amp; sheets — <strong>change if soiled</strong></li>
           <li><strong>Empty the basin</strong> if needed</li>
           <li>Offer water or oat milk</li>
         </ul>
@@ -635,7 +650,7 @@ Below is a brief summary of what he needs during visits so we can make sure he�
         <ul>
           <li><strong>Prepare lunch</strong> and keep him company</li>
           <li>Offer snacks</li>
-          <li>Offer drinks <strong>water or oat milk</strong> throughout, he needs to be encouraged to stay hydrated</li>
+          <li>Offer drinks — <strong>water or oat milk</strong> throughout; he needs to be encouraged to stay hydrated</li>
           <li>Help him outside if the weather is nice</li>
           <li>Check in on how he's feeling</li>
         </ul>
@@ -652,7 +667,7 @@ Below is a brief summary of what he needs during visits so we can make sure he�
         <ul>
           <li>Light <strong>dinner or snack</strong> by 6 PM</li>
           <li><strong>After 6 PM — liquids only.</strong> Eating later upsets his digestion and makes him unwell overnight</li>
-          <li>Offer Water an/or oat milk</li>
+          <li>Offer water and/or oat milk</li>
         </ul>
       </div>
 
@@ -665,9 +680,8 @@ Below is a brief summary of what he needs during visits so we can make sure he�
           </div>
         </div>
         <ul>
-          <li>Help him get ready for bed, put toothpase on his toothbrush...</li>
+          <li>Help him get ready for bed, put toothpaste on his toothbrush</li>
           <li>Help him change into a <strong>clean, dry diaper</strong> for overnight absorption</li>
-         
           <li>Apply <strong>Vaseline</strong> to his private area and upper legs to prevent rashes or infection</li>
           <li>Make sure he's comfortable and settled</li>
         </ul>
@@ -676,10 +690,8 @@ Below is a brief summary of what he needs during visits so we can make sure he�
     </div>
 
     <div class="care-note">
-      <strong>Missy helps on Tuesdays and Thursdays</strong>, she is paid $15/hour.
-      </br>
-      <p><strong>Xiomara</strong> is a neighbor that helps out for few hours a week, she is paid $20/hour</p>
-      </br>
+      <strong>Missy helps on Tuesdays and Thursdays</strong>, she is paid $15/hour.<br><br>
+      <strong>Xiomara</strong> is a neighbor that helps out a few hours a week, she is paid $20/hour.<br><br>
       <strong>Margarita:</strong> 310-871-1729<br>
       <strong>Alex:</strong> 850-377-3629
     </div>
@@ -702,10 +714,7 @@ Below is a brief summary of what he needs during visits so we can make sure he�
 
 <script>
 // ─── CONFIGURATION ────────────────────────────────────────────────────────────
-// All secrets live in Cloudflare — nothing sensitive here
 const WORKER_URL = 'https://dads-schedule-b6b1.outerealm11.workers.dev';
-
-// Change this to the first day Mom leaves (YYYY-MM-DD)
 const START_DATE = '2026-04-02';
 const NUM_DAYS   = 6;
 // ─────────────────────────────────────────────────────────────────────────────
@@ -717,23 +726,19 @@ let myName = localStorage.getItem('careSchedule_name') || '';
 let scheduleData = { slots: {} };
 let pendingSlot = null;
 
-// ─── Init ─────────────────────────────────────────────────────────────────────
 function init() {
   const start = parseDate(START_DATE);
   const end = addDays(start, NUM_DAYS - 1);
   document.getElementById('dateRange').textContent =
     `${MONTHS[start.getMonth()]} ${start.getDate()} – ${MONTHS[end.getMonth()]} ${end.getDate()}, ${end.getFullYear()}`;
-
   if (myName) {
     document.getElementById('nameInput').value = myName;
     document.getElementById('nameDisplay').textContent = `Hi, ${myName}! 👋`;
   }
-
   renderCalendar();
   loadData();
 }
 
-// ─── Date helpers ─────────────────────────────────────────────────────────────
 function parseDate(str) {
   const [y, m, d] = str.split('-').map(Number);
   return new Date(y, m - 1, d);
@@ -748,7 +753,6 @@ function formatDate(date) {
   return `${DAYS[date.getDay()]} ${MONTHS[date.getMonth()]} ${date.getDate()}`;
 }
 
-// ─── Name ─────────────────────────────────────────────────────────────────────
 function saveName() {
   const val = document.getElementById('nameInput').value.trim();
   if (!val) return;
@@ -759,7 +763,6 @@ function saveName() {
 }
 document.getElementById('nameInput').addEventListener('keydown', e => { if (e.key === 'Enter') saveName(); });
 
-// ─── API — calls Worker only, zero secrets in this file ───────────────────────
 async function loadData() {
   document.getElementById('statusMsg').textContent = 'Loading shared schedule...';
   try {
@@ -791,30 +794,54 @@ async function saveData() {
   }
 }
 
-// ─── Render ───────────────────────────────────────────────────────────────────
 function renderCalendar() {
   const root = document.getElementById('calendarRoot');
   root.innerHTML = '';
   const start = parseDate(START_DATE);
   setTimeout(renderTimeline, 0);
 
-  for (let week = 0; week < 1; week++) {
-    const wLabel = document.createElement('div');
-    wLabel.className = 'week-label';
-    wLabel.textContent = `Week ${week + 1}`;
-    root.appendChild(wLabel);
+  const wLabel = document.createElement('div');
+  wLabel.className = 'week-label';
+  wLabel.textContent = 'April 2 – 7, 2026';
+  root.appendChild(wLabel);
 
-    const grid = document.createElement('div');
-    grid.className = 'schedule-grid';
-
-    for (let d = 0; d < 7; d++) {
-      const dayIdx = week * 7 + d;
-      if (dayIdx >= NUM_DAYS) break;
-      const date = addDays(start, dayIdx);
-      grid.appendChild(renderDayCard(date, dateKey(date)));
-    }
-    root.appendChild(grid);
+  const grid = document.createElement('div');
+  grid.className = 'schedule-grid';
+  for (let d = 0; d < NUM_DAYS; d++) {
+    const date = addDays(start, d);
+    grid.appendChild(renderDayCard(date, dateKey(date)));
   }
+  root.appendChild(grid);
+}
+
+// ── Parse "9am" or "2:30pm" into minutes ──
+function labelToMins(str) {
+  if (!str) return null;
+  const m = str.match(/(\d+)(?::(\d+))?(am|pm)/i);
+  if (!m) return null;
+  let h = parseInt(m[1]), mins = parseInt(m[2] || 0), ap = m[3].toLowerCase();
+  if (ap === 'pm' && h !== 12) h += 12;
+  if (ap === 'am' && h === 12) h = 0;
+  return h * 60 + mins;
+}
+
+// ── Parse "9am–1pm" label into {start, end} minutes ──
+function slotToRange(label) {
+  if (!label) return null;
+  const parts = label.split('–');
+  if (parts.length < 2) return null;
+  const start = labelToMins(parts[0].trim());
+  const end   = labelToMins(parts[1].trim());
+  if (start === null || end === null) return null;
+  return { start, end: end <= start ? end + 1440 : end };
+}
+
+function formatMins(mins) {
+  mins = ((mins % 1440) + 1440) % 1440;
+  const h = Math.floor(mins / 60), m = mins % 60;
+  const ap = h >= 12 ? 'pm' : 'am';
+  const h12 = h % 12 || 12;
+  return m === 0 ? `${h12}${ap}` : `${h12}:${String(m).padStart(2,'0')}${ap}`;
 }
 
 function renderDayCard(date, dk) {
@@ -829,16 +856,38 @@ function renderDayCard(date, dk) {
   const slotsDiv = document.createElement('div');
   slotsDiv.className = 'day-slots';
 
-  Object.entries(scheduleData.slots || {})
-    .filter(([k]) => k.startsWith(dk + '_'))
-    .sort(([a], [b]) => parseInt(a.split('_slot')[1]) - parseInt(b.split('_slot')[1]))
-    .forEach(([key, slot]) => slotsDiv.appendChild(renderSlot(key, slot, date)));
-
+  // ── Add Time button at TOP ──
   const addBtn = document.createElement('button');
   addBtn.className = 'add-slot-btn';
-  addBtn.textContent = '+ Add time';
+  addBtn.textContent = '+ Add Time';
   addBtn.onclick = () => openAddModal(date, dk);
   slotsDiv.appendChild(addBtn);
+
+  // ── Sort slots by start time ──
+  const parsedSlots = Object.entries(scheduleData.slots || {})
+    .filter(([k]) => k.startsWith(dk + '_'))
+    .map(([key, slot]) => ({ key, slot, range: slotToRange(slot.label) }))
+    .filter(s => s.range !== null)
+    .sort((a, b) => a.range.start - b.range.start);
+
+  const unparsed = Object.entries(scheduleData.slots || {})
+    .filter(([k]) => k.startsWith(dk + '_'))
+    .filter(([key]) => !parsedSlots.find(s => s.key === key));
+
+  // ── Inject gap indicators between slots ──
+  let prevEnd = null;
+  parsedSlots.forEach(({ key, slot, range }) => {
+    if (prevEnd !== null && range.start > prevEnd + 30) {
+      const gapDiv = document.createElement('div');
+      gapDiv.className = 'slot-gap';
+      gapDiv.textContent = `${formatMins(prevEnd)} – ${formatMins(range.start)} uncovered`;
+      slotsDiv.appendChild(gapDiv);
+    }
+    slotsDiv.appendChild(renderSlot(key, slot, date));
+    prevEnd = range.end;
+  });
+
+  unparsed.forEach(([key, slot]) => slotsDiv.appendChild(renderSlot(key, slot, date)));
 
   card.appendChild(slotsDiv);
   return card;
@@ -863,7 +912,6 @@ function renderSlot(key, slot, date) {
   return btn;
 }
 
-// ─── Modals ───────────────────────────────────────────────────────────────────
 function closeModal() {
   document.getElementById('modalOverlay').classList.remove('open');
   pendingSlot = null;
@@ -875,13 +923,10 @@ document.getElementById('modalOverlay').addEventListener('click', e => {
 function openAddModal(date, dk) {
   if (!myName) { alert('Please enter your name first!'); return; }
   pendingSlot = { dk };
-
   document.getElementById('modalTitle').textContent = `Add a time — ${formatDate(date)}`;
   document.getElementById('modalSub').textContent = 'Enter the time range you can help:';
-
   const nextIdx = Object.keys(scheduleData.slots || {}).filter(k => k.startsWith(dk + '_')).length;
   const slotKey = `${dk}_slot${nextIdx}`;
-
   document.getElementById('modalBody').innerHTML = `
     <div class="time-row">
       <input type="time" id="timeFrom" value="09:00" />
@@ -916,7 +961,6 @@ function confirmAdd(slotKey) {
   const to   = document.getElementById('timeTo').value;
   const type = document.querySelector('.modal-opt.selected')?.dataset.type || 'family';
   const label = formatTime(from) + '–' + formatTime(to);
-
   if (!scheduleData.slots) scheduleData.slots = {};
   const note = (document.getElementById('slotNote')?.value || '').trim();
   scheduleData.slots[slotKey] = { name: myName, type, label, ...(note && { note }) };
@@ -927,7 +971,6 @@ function confirmAdd(slotKey) {
 
 function openClaimModal(key, slot, date) {
   if (!myName) { alert('Please enter your name first!'); return; }
-
   document.getElementById('modalTitle').textContent = `Claim slot`;
   document.getElementById('modalSub').textContent = `${formatDate(date)} · ${slot.label}`;
   document.getElementById('modalBody').innerHTML = `
@@ -978,7 +1021,6 @@ function confirmRemove(key) {
   saveData();
 }
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
 function formatTime(t) {
   if (!t) return '';
   const [h, m] = t.split(':').map(Number);
@@ -987,23 +1029,17 @@ function formatTime(t) {
   return m === 0 ? `${h12}${ampm}` : `${h12}:${String(m).padStart(2,'0')}${ampm}`;
 }
 
-
-
 // ─── Timeline ─────────────────────────────────────────────────────────────────
 function renderTimeline() {
   const hourMarks = document.getElementById('tlHourMarks');
   const tlRows = document.getElementById('tlRows');
   if (!hourMarks || !tlRows) return;
 
-  // Hour labels: 12a, 3, 6, 9, 12p, 3, 6, 9
   const labels = ['12a','3am','6am','9am','12p','3pm','6pm','9pm',''];
-  hourMarks.innerHTML = labels.map(l =>
-    `<div class="tl-hour-mark">${l}</div>`
-  ).join('');
+  hourMarks.innerHTML = labels.map(l => `<div class="tl-hour-mark">${l}</div>`).join('');
 
   const start = parseDate(START_DATE);
   tlRows.innerHTML = '';
-
   let anyUncovered = [];
 
   for (let d = 0; d < NUM_DAYS; d++) {
@@ -1011,11 +1047,8 @@ function renderTimeline() {
     const dk = dateKey(date);
     const label = `${DAYS[date.getDay()]}<br>${MONTHS[date.getMonth()]} ${date.getDate()}`;
 
-    // Collect slots for this day
-    const daySlots = Object.entries(scheduleData.slots || {})
-      .filter(([k]) => k.startsWith(dk + '_'));
+    const daySlots = Object.entries(scheduleData.slots || {}).filter(([k]) => k.startsWith(dk + '_'));
 
-    // Build coverage array — 1440 minutes
     const covered = new Array(1440).fill(null);
     daySlots.forEach(([, slot]) => {
       if (!slot.label) return;
@@ -1023,59 +1056,48 @@ function renderTimeline() {
       if (!match) return;
       let h1 = parseInt(match[1]), m1 = parseInt(match[2] || 0), ap1 = match[3];
       let h2 = parseInt(match[4]), m2 = parseInt(match[5] || 0), ap2 = match[6];
-      // Resolve am/pm
       if (ap1) { if (ap1.toLowerCase() === 'pm' && h1 !== 12) h1 += 12; if (ap1.toLowerCase() === 'am' && h1 === 12) h1 = 0; }
       if (ap2) { if (ap2.toLowerCase() === 'pm' && h2 !== 12) h2 += 12; if (ap2.toLowerCase() === 'am' && h2 === 12) h2 = 0; }
       const startMin = h1 * 60 + m1;
-      let endMin     = h2 * 60 + m2;
-      // Handle overnight slots (e.g. 9pm–7am crosses midnight)
+      let endMin = h2 * 60 + m2;
       if (endMin <= startMin) endMin += 1440;
-      for (let i = startMin; i < endMin; i++) {
-        covered[i % 1440] = slot.type || 'family';
-      }
+      for (let i = startMin; i < endMin; i++) covered[i % 1440] = slot.type || 'family';
     });
 
-    // Build contiguous segments for rendering
     const segments = [];
     let i = 0;
     while (i < 1440) {
       if (covered[i] !== null) {
-        const type = covered[i];
-        const segStart = i;
+        const type = covered[i], segStart = i;
         while (i < 1440 && covered[i] === type) i++;
         segments.push({ start: segStart, end: i, type });
       } else { i++; }
     }
 
-    // Check for uncovered care windows
     const careWindows = [
       { label: 'Morning (7–9am)', s: 7*60, e: 9*60 },
       { label: 'Lunch (2–4pm)',   s: 14*60, e: 16*60 },
       { label: 'Bedtime (7–9pm)', s: 19*60, e: 21*60 },
     ];
     careWindows.forEach(w => {
-      const windowCovered = covered.slice(w.s, w.e).some(v => v !== null);
-      if (!windowCovered) {
+      if (!covered.slice(w.s, w.e).some(v => v !== null))
         anyUncovered.push(`${DAYS[date.getDay()]} ${w.label}`);
-      }
     });
 
-    // Render bar
     const row = document.createElement('div');
     row.className = 'tl-row';
     row.innerHTML = `<div class="tl-day-label">${label}</div>`;
 
     const barWrap = document.createElement('div');
     barWrap.className = 'tl-bar-wrap';
-
     segments.forEach(seg => {
       const el = document.createElement('div');
       el.className = `tl-segment type-${seg.type}`;
       el.style.left  = `${(seg.start / 1440) * 100}%`;
       el.style.width = `${((seg.end - seg.start) / 1440) * 100}%`;
-      const startH = Math.floor(seg.start/60), startM = seg.start % 60;
-      const endH   = Math.floor(seg.end/60),   endM   = seg.end % 60;
-      el.title = `${formatTime12(startH, startM)} – ${formatTime12(endH, endM)}`;
+      const sH = Math.floor(seg.start/60), sM = seg.start % 60;
+      const eH = Math.floor(seg.end/60),   eM = seg.end % 60;
+      el.title = `${formatTime12(sH, sM)} – ${formatTime12(eH, eM)}`;
       barWrap.appendChild(el);
     });
 
@@ -1083,10 +1105,12 @@ function renderTimeline() {
     tlRows.appendChild(row);
   }
 
-  // Show uncovered warning
   const warn = document.getElementById('tlUncovered');
   if (anyUncovered.length > 0) {
     warn.style.display = 'block';
+    warn.style.background = '#fdecea';
+    warn.style.border = '1px solid #e0a0a0';
+    warn.style.color = '#b05050';
     warn.innerHTML = `⚠️ <strong>Uncovered care windows:</strong> ${anyUncovered.join(' · ')}`;
   } else if (Object.keys(scheduleData.slots || {}).length > 0) {
     warn.style.display = 'block';
@@ -1106,7 +1130,6 @@ function formatTime12(h, m) {
 }
 
 setInterval(() => loadData(), 60000);
-
 init();
 </script>
 </body>
